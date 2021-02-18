@@ -17,12 +17,13 @@ while (True):
         uuid = x.read_name(i)
         temp = x.tempC(i)
 
-        requests.post("{url}/api/metrics/logs".format(url=os.environ.get('DJANGO_URL')),
-                      data={
-                          'logged_at': datetime.now(),
-                          'temp': temp,
-                          'uuid': uuid
-                      })
+        response = requests.post("{url}/api/metrics/logs".format(url=os.environ.get('DJANGO_URL')),
+                                 data={
+                                     'logged_at': datetime.now(),
+                                     'temp': temp,
+                                     'uuid': uuid
+                                 })
+        print(response.json())
 
         print("ID:  {id} --> temperature:  {temp}".format(id=uuid, temp=temp))
         i += 1
