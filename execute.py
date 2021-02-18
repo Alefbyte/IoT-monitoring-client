@@ -17,7 +17,7 @@ while (True):
         uuid = x.read_name(i)
         temp = x.tempC(i)
 
-        requests.post(os.environ.get('DJANGO_URL'),
+        requests.post("{url}/api/metrics/logs".format(url=os.environ.get('DJANGO_URL')),
                       data={
                           'logged_at': datetime.now(),
                           'temp': temp,
